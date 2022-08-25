@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:bmi_calculator/components/my_card.dart';
 import 'package:bmi_calculator/components/rounded_rect_icon_button.dart';
-import '../components/gender_large.dart';
+import 'package:bmi_calculator/components/gender_large.dart';
 import 'package:bmi_calculator/components/bottom_button.dart';
-import '../constants.dart';
+import 'package:bmi_calculator/constants.dart';
+import 'package:bmi_calculator/calculateBMI.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -207,7 +208,13 @@ class _InputPageState extends State<InputPage> {
           BottomButton(
             text: "CALCULATE",
             onTap: () {
-              Navigator.pushNamed(context, "/result");
+              Map<String, dynamic> bmiResult = calculateBMI(height: height, weight: weight);
+
+              Navigator.pushNamed(
+                context,
+                "/result",
+                arguments: bmiResult,
+              );
             },
           ),
         ],

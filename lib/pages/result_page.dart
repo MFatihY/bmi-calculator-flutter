@@ -6,6 +6,8 @@ import 'package:bmi_calculator/components/my_card.dart';
 class ResultPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final Map<String, dynamic> result = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("BMI Calculator"),
@@ -32,15 +34,15 @@ class ResultPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    "Normal",
+                    result["shortResult"],
                     style: kResultShortTextStyle,
                   ),
                   Text(
-                    "20.1",
+                    result["point"].toStringAsFixed(1),
                     style: kResultPointTextStyle,
                   ),
                   Text(
-                    "Your BMI looks pretty good. Congrats!",
+                    result["explanation"],
                     style: kResultExplanationTextStyle,
                     textAlign: TextAlign.center,
                   ),
